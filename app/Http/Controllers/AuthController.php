@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
@@ -33,4 +34,3 @@ class AuthController extends Controller
         ]);
     }
 }
-
