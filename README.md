@@ -221,6 +221,8 @@ JOIN partners_types ON partners.id_type_partner = partners_types.id;
 Присоединяет таблицу partners_types:
 
 по id_type_partner из partners и id из partners_types
+
+есть, победа
 ВАПВЩПРВАПЩВПВПВПВ
 ![image](https://github.com/user-attachments/assets/55bdc60a-5113-46d2-b69b-42d0911b3ac8)
  СКУЛЬ СКРИПТ
