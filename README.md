@@ -346,3 +346,16 @@ Traceback (most recent call last):
     title.setFont(QFont('Arial', 14, QFont.bold()))
                                      ^^^^^^^^^^^^
 TypeError: bold(self): first argument of unbound method must have type 'QFont' 
+
+
+
+
+Вместо
+python
+title.setFont(QFont('Arial', 14, QFont.bold()))
+нужно писать
+python
+title.setFont(QFont('Arial', 14, QFont.Weight.Bold))
+
+
+напиши исправилось или нет
