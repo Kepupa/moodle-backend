@@ -374,3 +374,5 @@ AttributeError: type object 'Qt' has no attribute 'AlignCenter'
 .setAlignment(Qt.AlignmentFlag.AlignCenter)
 во на это измени и напиши получилось или еще ошибки
 я создал тетс3.пай и он фул для 6 версии, напиши получилось или нет
+
+победа чувак, спс
