@@ -335,3 +335,14 @@ CREATE TABLE product_materials(
 а скрин интерфейса будет?
 
 он точно такой же, как я тебе скидывал, прям авбсолютно. Задание Стоимость продукта посчитать исходя из используемых материалов
+
+слыш тут 6 куте, и ругается
+
+Traceback (most recent call last):
+  File "/home/student2/pyqt_project/main.py", line 118, in <module>
+    window = MainWindow()
+             ^^^^^^^^^^^^
+  File "/home/student2/pyqt_project/main.py", line 97, in __init__
+    title.setFont(QFont('Arial', 14, QFont.bold()))
+                                     ^^^^^^^^^^^^
+TypeError: bold(self): first argument of unbound method must have type 'QFont' 
