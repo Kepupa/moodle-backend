@@ -223,11 +223,3 @@ JOIN partners_types ON partners.id_type_partner = partners_types.id;
 по id_type_partner из partners и id из partners_types
 
 
-
-
-
-![image](https://github.com/user-attachments/assets/36b4caed-3d45-4032-8d49-e37c3cad1b03)
-![image](https://github.com/user-attachments/assets/141d745f-aa4a-4082-9066-f67ef480c0f7)
-
-
-
