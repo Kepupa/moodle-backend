@@ -276,3 +276,4 @@ CREATE TABLE product_materials(
 );
 
 unit_of_measurement VARCHAR(100) по идеи для этого надо отдельную сделать, но сказали можно не делать
+мне чото сделать с этим?
