@@ -1,3 +1,4 @@
+жопа 
 Модуль 1
 Удаляем столы, если они существуют
 DROP TABLE IF EXISTS material_types CASCADE;
