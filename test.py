@@ -1,3 +1,7 @@
+алек только надо вроде как pyqt6 я хз какая у вас но если чо будь внимателен
+
+
+
 import sys
 import psycopg2
 from PyQt5.QtWidgets import (
