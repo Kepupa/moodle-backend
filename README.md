@@ -366,3 +366,10 @@ title.setFont(QFont('Arial', 14, QFont.Weight.Bold))
     title.setAlignment(Qt.AlignCenter)
                        ^^^^^^^^^^^^^^
 AttributeError: type object 'Qt' has no attribute 'AlignCenter'
+
+
+
+
+
+.setAlignment(Qt.AlignmentFlag.AlignCenter)
+во на это измени и напиши получилось или еще ошибки
