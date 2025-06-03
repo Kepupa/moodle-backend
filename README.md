@@ -327,3 +327,8 @@ CREATE TABLE product_materials(
 	material_id INT REFERENCES materials(id),
 	required_amount_of_material NUMERIC(4,2)
 );
+
+
+
+
+а скрин интерфейса будет?
