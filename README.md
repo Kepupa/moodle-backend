@@ -1,61 +1,124 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Модуль 1
+Удаляем столы, если они существуют
+DROP TABLE IF EXISTS material_types CASCADE;
+DROP TABLE IF EXISTS product_types CASCADE;
+DROP TABLE IF EXISTS products CASCADE;
+DROP TABLE IF EXISTS workshops CASCADE;
+DROP TABLE IF EXISTS product_workshops CASCADE;
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+CREATE TABLE material_types (
+  material_type_id SERIAL PRIMARY KEY UNIQUE, делаем ключ уникальный
+  material_type VARCHAR(100) UNIQUE NOT NULL, варчар макс 100 символов
+  percent_of_loss NUMERIC(4,2)  нумерик, (общее колво цифр, скок после запятой)
+);
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+CREATE TABLE product_types (
+  product_type_id SERIAL PRIMARY KEY UNIQUE,
+  product_type VARCHAR(100) UNIQUE NOT NULL,
+  coef_type_product NUMERIC(4,2)
+);
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+CREATE TABLE products (
+  product_id SERIAL PRIMARY KEY UNIQUE,
+  product_type_id INT REFERENCES product_types(product_type_id), (ссылаемся на таблицу)
+  product_name VARCHAR(100) UNIQUE NOT NULL,
+  articul INTEGER UNIQUE NOT NULL,
+  min_cost_for_partner NUMERIC(9,2),
+  material_type_id INT REFERENCES material_types(material_type_id)
+);
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+CREATE TABLE workshops (
+  workshop_id SERIAL PRIMARY KEY UNIQUE,
+  workshop_name VARCHAR(100) UNIQUE NOT NULL,
+  workshop_type VARCHAR(100) NOT NULL,
+  workshop_members INTEGER 
+);
 
-## Learning Laravel
+CREATE TABLE product_workshops(
+  product_id INT REFERENCES products(product_id),
+  workshop_id INT REFERENCES workshops(workshop_id),
+  time_todo NUMERIC(2,2) NOT NULL
+);
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+import sys  # Для управления приложением
+import psycopg2  # Для подключения к PostgreSQL
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QListWidget, QListWidgetItem
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# Параметры подключения к БД
+DB_CONFIG = {
+    'host': 'localhost',
+    'port': '5432',
+    'dbname': 'postgres',   # Имя базы данных
+    'user': 'postgres',         # Логин
+    'password': '12345678' # Пароль (замени на свой)
+}
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-------------------------------------
+# Функция для получения данных из БД
+def get_products():
+    conn = psycopg2.connect(**DB_CONFIG)  # Подключаемся к БД
+    cursor = conn.cursor()                # Создаём курсор (для выполнения запросов)
 
-## Laravel Sponsors
+    query = """
+        SELECT
+            pt.product_type,
+            p.product_name,
+            p.articul,
+            p.min_cost_for_partner,
+            mt.material_type,
+            ROUND(SUM(pw.time_todo)) AS manufacture_time
+        FROM products p
+        JOIN product_types pt ON p.product_type_id = pt.product_type_id
+        JOIN material_types mt ON p.material_type_id = mt.material_type_id
+        LEFT JOIN product_workshops pw ON p.product_id = pw.product_id
+        GROUP BY pt.product_type, p.product_name, p.articul, p.min_cost_for_partner, mt.material_type
+    """  # SQL-запрос (объяснён выше)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    cursor.execute(query)         # Выполняем запрос
+    products = cursor.fetchall()  # Получаем все строки с данными
+    cursor.close()                # Закрываем курсор
+    conn.close()                  # Закрываем подключение
+    return products               # Возвращаем список продуктов
 
-### Premium Partners
+# Окно программы
+class ProductViewer(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Продукция компании")  # Заголовок окна
+        self.setGeometry(100, 100, 600, 400)       # Размер окна
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+        layout = QVBoxLayout()           # Вертикальное расположение
+        self.product_list = QListWidget()  # Список для вывода продукции
+        layout.addWidget(self.product_list)
+        self.setLayout(layout)
 
-## Contributing
+        self.load_products()  # Загрузка данных при старте
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    # Метод загрузки данных
+    def load_products(self):
+        products = get_products()  # Получили данные из БД
+        for product in products:
+            # Распаковываем каждое поле
+            type_, name, article, min_price, material, time = product
 
-## Code of Conduct
+            # Формируем текст для отображения
+            item_text = (
+                f"Тип: {type_} | {name}\n"
+                f"Арт: {article}\n"
+                f"Мин. цена: {min_price} ₽\n"
+                f"Материал: {material}\n"
+                f"Время изготовления: {time} часов"
+            )
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+            # Добавляем в список
+            item = QListWidgetItem(item_text)
+            self.product_list.addItem(item)
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Запуск приложения
+if __name__ == '__main__':
+    app = QApplication(sys.argv)   # Создаём приложение
+    viewer = ProductViewer()       # Создаём окно
+    viewer.show()                  # Показываем
+    sys.exit(app.exec_())          # Выход при закрытии
