@@ -226,5 +226,7 @@ JOIN partners_types ON partners.id_type_partner = partners_types.id;
 ВАПВЩПРВАПЩВПВПВПВ
 ![image](https://github.com/user-attachments/assets/55bdc60a-5113-46d2-b69b-42d0911b3ac8)
  СКУЛЬ СКРИПТ
- 
+
+есть, победа
+  ща потом скрипт бахну, пока объяняют задание то кторе я тебе скидывал
 
