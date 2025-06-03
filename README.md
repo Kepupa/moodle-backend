@@ -359,3 +359,10 @@ title.setFont(QFont('Arial', 14, QFont.Weight.Bold))
 
 
 напиши исправилось или нет
+
+Да, но теперь это
+
+  File "/home/student2/pyqt_project/main.py", line 96, in __init__
+    title.setAlignment(Qt.AlignCenter)
+                       ^^^^^^^^^^^^^^
+AttributeError: type object 'Qt' has no attribute 'AlignCenter'
