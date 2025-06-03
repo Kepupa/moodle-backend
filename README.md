@@ -230,3 +230,5 @@ JOIN partners_types ON partners.id_type_partner = partners_types.id;
 есть, победа
   ща потом скрипт бахну, пока объяняют задание то кторе я тебе скидывал
 
+прям одинв один задание лол
+
