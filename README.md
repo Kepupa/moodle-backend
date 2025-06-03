@@ -232,3 +232,4 @@ JOIN partners_types ON partners.id_type_partner = partners_types.id;
 
 прям одинв один задание лол
 
+если чо пиши, я каждые 5 мин обновляю страницу и на перерыве приходи
