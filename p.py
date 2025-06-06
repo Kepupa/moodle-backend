@@ -1,6 +1,7 @@
 import sys  # Для управления приложением
 import psycopg2  # Для подключения к PostgreSQL
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QListWidget, QListWidgetItem
+from PyQt6.QtWidgets import (QApplication, QWidget, QVBoxLayout, 
+                             QListWidget, QListWidgetItem)
 
 # Параметры подключения к БД
 DB_CONFIG = {
@@ -78,4 +79,4 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)   # Создаём приложение
     viewer = ProductViewer()       # Создаём окно
     viewer.show()                  # Показываем
-    sys.exit(app.exec_())          # Выход при закрытии
+    sys.exit(app.exec())          # Выход при закрытии
