@@ -471,3 +471,5 @@ ERROR: numeric field overflow
 DETAIL: A field with precision 2, scale 2 must round to an absolute value less than 1.
 CONTEXT: COPY product_workshops, line 2, column time_todo: "2.0"
 вот аткая ошибка если импротить через заппятую
+
+тут уже ошибка связанная со скриптом. Поменя нумерик на 4,1 допустим
