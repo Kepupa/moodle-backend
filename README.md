@@ -384,3 +384,5 @@ AttributeError: type object 'Qt' has no attribute 'AlignCenter'
 
 
 да, всё норм)
+
+А че скрипт подошел, который тут вначале в редми?)
