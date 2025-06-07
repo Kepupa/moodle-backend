@@ -494,3 +494,5 @@ CONTEXT: COPY product_workshops, line 2, column time_todo: "2.0"
 #FFFFFF#D2DFFF#355CBD
 
 от сделай пж, код у репе котоырй я кидал
+
+файл r.py
