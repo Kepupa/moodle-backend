@@ -392,3 +392,5 @@ AttributeError: type object 'Qt' has no attribute 'AlignCenter'
 ERROR: invalid input syntax for type integer: "20,8,2.7"
 CONTEXT: COPY product_workshops, line 2, column product_id: "20,8,2.7"
 загугли ошибку пж
+
+братиш, постгрес не воспринимает запятые, и почему у тебя в id 2.7???? Ты походу напортачил с импортом таблиц, у тебя там нигде не должно быть запятых. 
