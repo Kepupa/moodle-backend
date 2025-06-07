@@ -496,3 +496,6 @@ CONTEXT: COPY product_workshops, line 2, column time_todo: "2.0"
 от сделай пж, код у репе котоырй я кидал
 
 файл r.py
+
+
+ну думаю троечка будет)
