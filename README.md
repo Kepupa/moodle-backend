@@ -378,3 +378,5 @@ AttributeError: type object 'Qt' has no attribute 'AlignCenter'
 победа чувак, спс
 
 че тот же варик? 
+
+крч отойду на 20-30 мин пока
