@@ -382,6 +382,7 @@ AttributeError: type object 'Qt' has no attribute 'AlignCenter'
 крч отойду на 20-30 мин пока
 
 
+ну вроде рабочий
 
 да, всё норм)
 
