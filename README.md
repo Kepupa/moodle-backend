@@ -387,3 +387,8 @@ AttributeError: type object 'Qt' has no attribute 'AlignCenter'
 да, всё норм)
 
 А че скрипт подошел, который тут вначале в редми?)
+
+
+ERROR: invalid input syntax for type integer: "20,8,2.7"
+CONTEXT: COPY product_workshops, line 2, column product_id: "20,8,2.7"
+загугли ошибку пж
